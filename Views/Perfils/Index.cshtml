@@ -1,0 +1,40 @@
+﻿@model IEnumerable<lab4t1.Models.Perfil>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body style="background-color:#212529">
+    <h1 class="text-white" style="text-align:center">Lista de Utilizadores</h1>
+<br />
+
+    <div class="row text-white">
+        <div class="col-md-8 offset-md-2 text-white">
+        <table class="table">
+            <thead>
+                    <tr class="text-center text-white">
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                        <th class="text-white">Ações</th>
+                </tr>
+            </thead>
+                <tbody class="text-white">
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Detalhes </a> |
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Apagar </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>

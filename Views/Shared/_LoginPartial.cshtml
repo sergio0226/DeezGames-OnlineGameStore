@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@section cssstyle{
+    <link href="~/css/styles.css" rel="stylesheet" />.
+}
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><b>Seja bem-vindo(a) <strong>@User.Identity?.Name!</strong> </b></a>
+    </li>
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Jogos" asp-action="Create" title="Manage"></a>
+            </li>
+        }
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="btn btn-outline-danger" type="submit">
+                Logout
+                <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+            </button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
+              <button class="btn btn-outline-danger" type="submit">
+                Login
+              <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+              </button>
+            </form>
+    </li>
+}
+</ul>

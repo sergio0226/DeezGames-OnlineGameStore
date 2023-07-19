@@ -1,0 +1,63 @@
+﻿@model IEnumerable<lab4t1.Models.Jogo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<body style="background-color:#212529">
+<h1 class="text-white" style ="text-align:center">Lista de Jogos</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr class="text-center text-white">
+                        <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Preco)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Plataforma)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Produtora)
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody class="text-white">
+                @foreach (var item in Model)
+                {
+                        <tr class="text-center">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Preco)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plataforma.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produtora.Name)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Editar </a> |
+                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Detalhes </a> |
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Apagar </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+@await Html.PartialAsync("_CreateItem", "Jogos")

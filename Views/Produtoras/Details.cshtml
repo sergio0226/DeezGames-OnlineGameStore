@@ -1,0 +1,31 @@
+﻿@model lab4t1.Models.Produtora
+
+@{
+    ViewData["Title"] = "Details";
+}
+<body style="background-color:#212529">
+    <h1 class="text-white" style="text-align:center">Detalhes da Produtora</h1>
+
+<div>
+    <h4 class="text-white">Produtora</h4>
+    <hr />
+    <dl class="row text-white">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Morada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Morada)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="text-white" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index" class="text-white">Voltar à lista</a>
+</div>
+</body>

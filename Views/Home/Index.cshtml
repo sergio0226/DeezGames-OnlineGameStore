@@ -1,0 +1,116 @@
+﻿@{
+    Layout = "~/Views/Shared/_layout2.cshtml";
+
+}
+@model IEnumerable<lab4t1.Models.Jogo>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DeezGamez - Online Gaming Shop</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link rel="stylesheet" href="path/to/font-awesome.min.css">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Be the game</h1> <br /> <br />
+
+            </div>
+            <div class="container">
+                <form asp-area="Home" asp-action="Index" role="form" method="post" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <input type="text" name="searchstring" class="form-control search-slt" placeholder="Escreva o nome do jogo">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <select name="Categoria" class="form-control search-slt" id="exampleFormControlSelect1">
+                                        <option value="">Selecione a categoria do jogo</option>
+                                        @foreach(var categoria in ViewBag.Categorias)
+                                        {
+                                            <option value="@categoria.Id">@categoria.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <select name="Plataforma" class="form-control search-slt" id="exampleFormControlSelect1">
+                                        <option value="">Selecione a Plataforma</option>
+                                        @foreach(var plataforma in ViewBag.Plataformas)
+                                        {
+                                            <option value="@plataforma.Id">@plataforma.Name</option>
+                                        }
+
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <button type="submit" class="btn btn-danger wrn-btn">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+               
+                    @foreach(var item in Model)
+                    { 
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                            <img src ="~/Jogos/@item.Name/@item.Foto" class="card-img-top" width="400" height="350" />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">@item.Name</h5>
+                                        <!-- Product price-->
+                                     @item.Preco €
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" asp-controller="Jogos" asp-action="JogoComprado">Comprar</a>
+                                    <a asp-controller="Jogos" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary mt-auto">Ver Jogo</a>
+                                    <button class="btn btn-outline-danger" type="submit">
+                                        <i class="bi-heart-fill me-1"></i>
+                                    </button>
+                                </div>
+                                </div>
+                            </div> 
+                        </div>
+                    }
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; DeezGamez 2022</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+@await Html.PartialAsync("_CreateItem", "Jogos")

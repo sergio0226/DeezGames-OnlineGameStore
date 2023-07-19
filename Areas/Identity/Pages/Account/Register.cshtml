@@ -1,0 +1,44 @@
+﻿@page
+@model RegisterModel
+
+
+
+
+<link href="~/css/register.css" rel="stylesheet" />
+<body style="background-color:#212529">
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="register-container">
+    <section>
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <h1 class="register-title">Register</h1>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input asp-for="Input.UserName" class="form-control"  placeholder="Insira o username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input asp-for="Input.Email" class="form-control"  placeholder="Insira o email">
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input asp-for="Input.Password" class="form-control"  placeholder="Insira a password">
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input asp-for="Input.ConfirmPassword" class="form-control"  placeholder="Confirme a password">
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" asp-page="./Login" type="submit" class="btn btn-primary">Register</button>
+    </form>
+        </section>
+    </div>
+</div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
